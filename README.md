@@ -8,10 +8,17 @@ Windows için Rust ile geliştirilmiş, Voxora'nın bağımsız soundpad sürüm
 
 ## Kullanım
 
-1. [Sürümler](https://github.com/ObsQrr/VoxoraRust/releases) sayfasından Windows x64 taşınabilir paketi indirin ve açın.
-2. `voxora.exe` dosyasını çalıştırın, sesleri ekleyin ve çıkış aygıtınızı seçin.
+1. [Sürümler](https://github.com/ObsQrr/VoxoraRust/releases) sayfasından **`VoxoraRust-1.0.0-setup.exe`** kurucusunu veya taşınabilir ZIP'i indirin.
+2. Kurucuyu çalıştırın; uygulama kullanıcı hesabınıza kurulur, Başlat menüsü ve masaüstü kısayolu oluşturulur.
 3. Oyun veya Discord'a ses aktarmak için uygun bir sanal ses kablosu ayrıca kurulmalıdır.
 4. Bir sesi kaldırmak için karttaki çöp kutusuna veya sağ tık menüsündeki **Kütüphaneden Kaldır** seçeneğine basın ve onaylayın. Bu işlem kaynak ses dosyasını diskten silmez.
+
+### Kurulum ve kaldırma
+
+- Kurulum yeri: `%LOCALAPPDATA%\Programs\VoxoraRust`; yönetici izni gerekmez.
+- Kaldırma: **Ayarlar → Uygulamalar → Voxora Rust → Kaldır**. Kısayollar ve program dosyaları silinir; `%APPDATA%\Voxora` altındaki ayarlar, kitaplık ve sesler korunur.
+- Sessiz kurulum (otomasyon): `VoxoraRust-1.0.0-setup.exe --silent --no-launch`. Kurulumdan sonra uygulamayı açmamak için `--no-launch` kullanılır.
+- Taşınabilir sürüm kurulum gerektirmez: ZIP'i açıp `voxora.exe` dosyasını çalıştırın.
 
 Uygulama ve paket imzasızdır; Windows SmartScreen uyarısı gösterebilir. Ayarlar ve kitaplık varsayılan olarak `%APPDATA%\Voxora` altında saklanır. `VOXORA_DATA_DIR` başka bir veri klasörü seçer.
 
@@ -27,7 +34,7 @@ Uygulama ve paket imzasızdır; Windows SmartScreen uyarısı gösterebilir. Aya
 | | Rust 1.0 | C# Voxora |
 |---|---|---|
 | Teknoloji | Rust, egui/OpenGL ve CPAL/WASAPI | C#, WPF ve .NET |
-| Dağıtım | Windows x64 taşınabilir EXE | Windows kurucusu ve taşınabilir paket |
+| Dağıtım | Windows x64 kurucu EXE + taşınabilir paket | Windows kurucusu ve taşınabilir paket |
 | Güncelleme | Rust sürüm sayfası tarayıcıda açılır; elle indirilir | C# sürümünün kendi güncelleme yolu |
 | Veri | `%APPDATA%\Voxora`; C# JSON alanlarının bir kısmı uyumlu | Kendi veri klasörü ve sürüm hattı |
 | Radyal menü | Ayrı şeffaf, odak çalmayan Windows katmanı | WPF tabanlı ayrı katman |
@@ -53,5 +60,7 @@ cargo build --release -p voxora-app
 ```
 
 Çıktı `target/release/voxora.exe`. Ek komutlar: `--version`, `--self-test`, `--page settings`. Self-test ses aygıtlarını açabilir.
+
+Kurulum EXE'si, taşınabilir ZIP hazırlandıktan sonra `installer\build-setup.ps1` ile üretilir; ZIP'i gömülü taşıyan ayrı bir Rust programıdır. Ayrıntılar `crates/setup` altında.
 
 Kaynak kodu MIT lisansı altında sunulur; bağımlılıkların kendi lisansları geçerlidir.
